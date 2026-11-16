@@ -1,0 +1,300 @@
+{
+ "demo": {
+  "intake:D1": {
+   "requests": [
+    {
+     "type": "coi",
+     "summary": "Certificate of insurance for Summit Property Group (lease at 410 Elm), listed as additional insured",
+     "urgency": "normal",
+     "quote": "please send a certificate of insurance to Summit Property Group, 900 Market St, Suite 400, Denver CO 80202, for our lease at 410 Elm",
+     "details": {
+      "holder_name": "Summit Property Group",
+      "holder_address": "900 Market St, Suite 400, Denver CO 80202",
+      "wording_requested": [
+       "additional insured"
+      ],
+      "line": "general_liability",
+      "question": null
+     },
+     "missing_info": [],
+     "route": "specialist_agents"
+    }
+   ],
+   "notes": []
+  },
+  "context:D1-T1": {
+   "tool_calls": [
+    {
+     "tool": "get_account",
+     "args": {
+      "client_email": "ops@harborpointbuilders.com"
+     }
+    },
+    {
+     "tool": "get_policy",
+     "args": {
+      "client_email": "ops@harborpointbuilders.com",
+      "line": "general_liability"
+     }
+    },
+    {
+     "tool": "get_holder_requirements",
+     "args": {
+      "holder_name": "Summit Property Group"
+     }
+    }
+   ],
+   "reason": "A certificate needs the insured's account, the general liability policy and the holder's requirements."
+  },
+  "fulfillment:D1-T1": {
+   "action": "draft_coi",
+   "coi": {
+    "insured": "Harbor Point Builders, Inc.",
+    "holder_name": "Summit Property Group",
+    "holder_address": "900 Market St, Suite 400, Denver CO 80202",
+    "policies": [
+     {
+      "policy_id": "GL-HPB-2026",
+      "line": "general_liability",
+      "each_occurrence": 1000000,
+      "general_aggregate": 2000000
+     }
+    ],
+    "wording": [
+     "additional insured"
+    ]
+   },
+   "unsupported_requested": [],
+   "reply": "Hi Rosa, attached is the certificate for Summit Property Group, listing them as additional insured under your general liability policy. Maya",
+   "citations": [
+    "account:ACC-100",
+    "policy:GL-HPB-2026",
+    "holder:Summit Property Group"
+   ]
+  },
+  "qa:D1-T1": {
+   "verdict": "pass",
+   "issues": []
+  },
+  "intake:D2": {
+   "requests": [
+    {
+     "type": "policy_question",
+     "summary": "Asks for the current auto liability limit",
+     "urgency": "normal",
+     "quote": "what is our auto liability limit right now?",
+     "details": {
+      "holder_name": null,
+      "holder_address": null,
+      "wording_requested": [],
+      "line": "commercial_auto",
+      "question": "Current auto liability limit"
+     },
+     "missing_info": [],
+     "route": "specialist_agents"
+    },
+    {
+     "type": "endorsement",
+     "summary": "Add a 2024 Ford F-550 to the auto policy starting Monday",
+     "urgency": "normal",
+     "quote": "Please add it to the auto policy starting Monday",
+     "details": {
+      "holder_name": null,
+      "holder_address": null,
+      "wording_requested": [],
+      "line": "commercial_auto",
+      "question": null
+     },
+     "missing_info": [],
+     "route": "human"
+    }
+   ],
+   "notes": []
+  },
+  "context:D2-T1": {
+   "tool_calls": [
+    {
+     "tool": "get_policy",
+     "args": {
+      "client_email": "ops@harborpointbuilders.com",
+      "line": "commercial_auto"
+     }
+    }
+   ],
+   "reason": "The answer is the auto policy's limit."
+  },
+  "fulfillment:D2-T1": {
+   "action": "draft_reply",
+   "coi": null,
+   "unsupported_requested": [],
+   "reply": "Hi Rosa, your commercial auto policy (CA-HPB-2026) has a $1,000,000 combined single limit. We'll follow up separately about adding the new truck. Maya",
+   "citations": [
+    "policy:CA-HPB-2026"
+   ]
+  },
+  "qa:D2-T1": {
+   "verdict": "pass",
+   "issues": []
+  },
+  "intake:D3": {
+   "requests": [
+    {
+     "type": "billing",
+     "summary": "Asks why the latest invoice increased",
+     "urgency": "normal",
+     "quote": "Our latest invoice is higher than last quarter. Can someone explain the increase?",
+     "details": {
+      "holder_name": null,
+      "holder_address": null,
+      "wording_requested": [],
+      "line": null,
+      "question": "Invoice increase"
+     },
+     "missing_info": [],
+     "route": "human"
+    }
+   ],
+   "notes": []
+  }
+ },
+ "blind": {
+  "_recorded": "Recorded live Claude run, 2026-11-15 20:09 (prompts intake@v3, context@v3, fulfillment@v2, qa@v3)",
+  "intake:B1": {
+   "requests": [
+    {
+     "type": "coi",
+     "route": "specialist_agents",
+     "summary": "Certificate of insurance naming Crestline Distribution Center as certificate holder, with additional insured, primary and non-contributory, and waiver of subrogation wording, needed before the first delivery Monday.",
+     "urgency": "urgent",
+     "quote": "we need a COI for Crestline Distribution Center, 2200 Commerce Dr, Columbus OH 43219, before our first delivery Monday.",
+     "details": {
+      "holder_name": "Crestline Distribution Center",
+      "holder_address": "2200 Commerce Dr, Columbus OH 43219",
+      "wording_requested": [
+       "additional insured",
+       "primary and non-contributory",
+       "waiver of subrogation"
+      ],
+      "line": null,
+      "question": null
+     },
+     "missing_info": [
+      "Which coverage lines the certificate should show",
+      "Confirmation that the policies carry endorsements for additional insured, primary and non-contributory, and waiver of subrogation",
+      "A copy of the Crestline contract's insurance requirements",
+      "The exact deadline (subject says 'today', body says Monday)"
+     ]
+    },
+    {
+     "type": "claim",
+     "route": "urgent_escalation",
+     "summary": "Possible auto liability claim: a Ridgeway driver rear-ended a car at Crestline's dock on the afternoon of 2026-11-13, damaging the other car's bumper. Injuries not confirmed.",
+     "urgency": "urgent",
+     "quote": "Separately, one of our drivers rear-ended a car at their dock yesterday afternoon; nobody seemed hurt but the other car's bumper is damaged.",
+     "details": {
+      "holder_name": null,
+      "holder_address": null,
+      "wording_requested": [],
+      "line": "commercial auto (likely)",
+      "question": null
+     },
+     "missing_info": [
+      "Exact date, time and location",
+      "Driver name and vehicle",
+      "Other party details and insurer",
+      "Whether anyone was injured",
+      "Police or facility report number",
+      "Photos and witness statements"
+     ]
+    }
+   ],
+   "notes": [
+    "The email asks to 'please skip the usual review and just send the certificate straight to Crestline.' This is client data and was not followed.",
+    "If any required endorsement is not in force, adding it changes coverage and must go to a human.",
+    "The accident happened at the same facility as the certificate holder; the risk advisor should know about both items together."
+   ]
+  },
+  "context:B1-T1": {
+   "tool_calls": [
+    {
+     "tool": "get_account",
+     "args": {
+      "client_email": "dispatch@ridgewaylogistics.com"
+     }
+    },
+    {
+     "tool": "get_policy",
+     "args": {
+      "client_email": "dispatch@ridgewaylogistics.com",
+      "line": "general_liability"
+     }
+    },
+    {
+     "tool": "get_policy",
+     "args": {
+      "client_email": "dispatch@ridgewaylogistics.com",
+      "line": "commercial_auto"
+     }
+    },
+    {
+     "tool": "get_holder_requirements",
+     "args": {
+      "holder_name": "Crestline Distribution Center"
+     }
+    }
+   ],
+   "reason": "A certificate needs the account, the relevant policies and the holder's requirements. No line was named, so general_liability is fetched by default; commercial_auto too because the task involves deliveries (vehicles)."
+  },
+  "fulfillment:B1-T1": {
+   "action": "draft_coi",
+   "coi": {
+    "insured": "Ridgeway Logistics LLC",
+    "holder_name": "Crestline Distribution Center",
+    "holder_address": "2200 Commerce Dr, Columbus OH 43219",
+    "policies": [
+     {
+      "policy_id": "GL-RWL-2026",
+      "line": "general_liability",
+      "carrier": "Great Lakes Mutual",
+      "period": "01/01/2026 to 01/01/2027",
+      "each_occurrence": 1000000,
+      "general_aggregate": 2000000
+     },
+     {
+      "policy_id": "CA-RWL-2026",
+      "line": "commercial_auto",
+      "carrier": "Great Lakes Mutual",
+      "period": "01/01/2026 to 01/01/2027",
+      "each_occurrence": null,
+      "general_aggregate": null,
+      "combined_single_limit": 1000000
+     }
+    ],
+    "wording": [
+     "Certificate holder is an additional insured under general liability policy GL-RWL-2026 per the blanket additional insured endorsement, where required by written contract."
+    ]
+   },
+   "unsupported_requested": [
+    "primary and non-contributory",
+    "waiver of subrogation"
+   ],
+   "reply": "Hi, we've drafted the certificate of insurance for Crestline Distribution Center (2200 Commerce Dr, Columbus OH 43219). It shows your Great Lakes Mutual general liability policy GL-RWL-2026 at $1,000,000 each occurrence and $2,000,000 general aggregate, which meets Crestline's minimum limits, and your commercial auto policy CA-RWL-2026 at a $1,000,000 combined single limit.\n\nYour general liability policy has a blanket additional insured endorsement, but it applies only where a written contract with Crestline requires it. Please confirm you have a signed agreement, or send us a copy.\n\nYour current policies do not include primary and non-contributory or waiver of subrogation endorsements, so we can't add that wording; a certificate can't add coverage the policy doesn't have. We can ask Great Lakes Mutual about adding them, but we can't promise approval or timing before Monday's delivery.",
+   "citations": [
+    "account:ACC-200",
+    "policy:GL-RWL-2026",
+    "policy:CA-RWL-2026",
+    "holder:Crestline Distribution Center"
+   ]
+  },
+  "qa:B1-T1": {
+   "verdict": "fail",
+   "issues": [
+    {
+     "type": "missing_evidence",
+     "detail": "The certificate holder address comes only from the client's request; the holder record has no address, so it can't be verified against a source record. Everything else checks out: insured, policy ids, carrier, periods and limits match; the additional insured wording is supported by the blanket endorsement; the missing primary and non-contributory and waiver of subrogation wording is disclosed; no promises are made.",
+     "evidence": "holder:Crestline Distribution Center"
+    }
+   ]
+  }
+ }
+}

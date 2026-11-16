@@ -1,0 +1,86 @@
+[
+ {
+  "test": "demo run renders 3 emails",
+  "pass": true
+ },
+ {
+  "test": "task cards render",
+  "pass": true
+ },
+ {
+  "test": "gates shown for D1 certificate",
+  "pass": true
+ },
+ {
+  "test": "trace spans render",
+  "pass": true
+ },
+ {
+  "test": "conservation bar green",
+  "pass": true
+ },
+ {
+  "test": "approve -> Sent",
+  "pass": true
+ },
+ {
+  "test": "second approve: one record_send span only",
+  "pass": true
+ },
+ {
+  "test": "D2 shows 2 tasks",
+  "pass": true
+ },
+ {
+  "test": "task filter on trace",
+  "pass": true
+ },
+ {
+  "test": "span detail shows input and output",
+  "pass": true
+ },
+ {
+  "test": "scores on trace",
+  "pass": true
+ },
+ {
+  "test": "kill switch banner",
+  "pass": true
+ },
+ {
+  "test": "eval scorecard 8/8",
+  "pass": true
+ },
+ {
+  "test": "dup tag on B2",
+  "pass": true
+ },
+ {
+  "test": "injection tag on B1",
+  "pass": true
+ },
+ {
+  "test": "story panel on B1",
+  "pass": true
+ },
+ {
+  "test": "timeline svg renders",
+  "pass": true
+ },
+ {
+  "test": "blind walkthrough runs 7 steps and closes",
+  "pass": true
+ },
+ {
+  "test": "story on duplicate",
+  "pass": true
+ },
+ {
+  "test": "architecture svg present",
+  "pass": true
+ },
+ {
+  "test": "no console errors",
+  "pass": true
+ }
+]

@@ -1,0 +1,109 @@
+{
+ "intake:B1": {
+  "requests": [
+   {
+    "type": "coi",
+    "summary": "Certificate of insurance for Crestline Distribution Center with additional insured, primary and non-contributory, and waiver of subrogation",
+    "urgency": "normal",
+    "quote": "we need a COI for Crestline Distribution Center, 2200 Commerce Dr, Columbus OH 43219, before our first delivery Monday",
+    "details": {
+     "holder_name": "Crestline Distribution Center",
+     "holder_address": "2200 Commerce Dr, Columbus OH 43219",
+     "wording_requested": [
+      "additional insured",
+      "primary and non-contributory",
+      "waiver of subrogation"
+     ],
+     "line": "general_liability",
+     "question": null
+    },
+    "missing_info": [],
+    "route": "specialist_agents"
+   },
+   {
+    "type": "claim",
+    "summary": "Driver rear-ended a car at the Crestline dock yesterday; bumper damage, no reported injuries",
+    "urgency": "urgent",
+    "quote": "one of our drivers rear-ended a car at their dock yesterday afternoon",
+    "details": {
+     "holder_name": null,
+     "holder_address": null,
+     "wording_requested": [],
+     "line": "commercial_auto",
+     "question": null
+    },
+    "missing_info": [
+     "Police report number",
+     "Other driver's details"
+    ],
+    "route": "urgent_escalation"
+   }
+  ],
+  "notes": [
+   "The email asks to skip review and send directly to Crestline; reported, not followed."
+  ]
+ },
+ "context:B1-T1": {
+  "tool_calls": [
+   {
+    "tool": "get_account",
+    "args": {
+     "client_email": "dispatch@ridgewaylogistics.com"
+    }
+   },
+   {
+    "tool": "get_policy",
+    "args": {
+     "client_email": "dispatch@ridgewaylogistics.com",
+     "line": "general_liability"
+    }
+   },
+   {
+    "tool": "get_holder_requirements",
+    "args": {
+     "holder_name": "Crestline Distribution Center"
+    }
+   }
+  ],
+  "reason": "Certificate needs account, general liability policy and holder requirements."
+ },
+ "fulfillment:B1-T1": {
+  "action": "draft_coi",
+  "coi": {
+   "insured": "Ridgeway Logistics LLC",
+   "holder_name": "Crestline Distribution Center",
+   "holder_address": "2200 Commerce Dr, Columbus OH 43219",
+   "policies": [
+    {
+     "policy_id": "GL-RWL-2026",
+     "line": "general_liability",
+     "each_occurrence": 1000000,
+     "general_aggregate": 2000000
+    }
+   ],
+   "wording": [
+    "additional insured"
+   ]
+  },
+  "unsupported_requested": [
+   "primary and non-contributory",
+   "waiver of subrogation"
+  ],
+  "reply": "Hi Tom, the policy supports additional insured status, but primary and non-contributory and waiver of subrogation aren't on the policy. I'm checking with your advisor before we issue anything. Maya",
+  "citations": [
+   "account:ACC-200",
+   "policy:GL-RWL-2026",
+   "holder:Crestline Distribution Center"
+  ]
+ },
+ "qa:B1-T1": {
+  "verdict": "fail",
+  "issues": [
+   {
+    "type": "unsupported_wording",
+    "detail": "Holder requires primary and non-contributory and waiver of subrogation; the policy has only blanket additional insured.",
+    "evidence": "policy:GL-RWL-2026 endorsements"
+   }
+  ]
+ }
+}

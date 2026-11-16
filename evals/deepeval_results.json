@@ -1,0 +1,66 @@
+{
+ "metric": "deepeval.ToolCorrectnessMetric",
+ "deepeval_version": "4.3.4",
+ "results": [
+  {
+   "run": "19:31",
+   "version": "context@v1",
+   "score": 1.0,
+   "pass": true
+  },
+  {
+   "run": "19:32",
+   "version": "context@v1",
+   "score": 1.0,
+   "pass": true
+  },
+  {
+   "run": "19:32b",
+   "version": "context@v1",
+   "score": 1.0,
+   "pass": true
+  },
+  {
+   "run": "19:48",
+   "version": "context@v1",
+   "score": 1.0,
+   "pass": true
+  },
+  {
+   "run": "19:55",
+   "version": "context@v2",
+   "score": 0.67,
+   "pass": false
+  },
+  {
+   "run": "19:56",
+   "version": "context@v2",
+   "score": 0.67,
+   "pass": false
+  },
+  {
+   "run": "19:57",
+   "version": "context@v2",
+   "score": 1.0,
+   "pass": true
+  },
+  {
+   "run": "19:59",
+   "version": "context@v3",
+   "score": 1.0,
+   "pass": true
+  },
+  {
+   "run": "20:00",
+   "version": "context@v3",
+   "score": 1.0,
+   "pass": true
+  },
+  {
+   "run": "20:09",
+   "version": "context@v3",
+   "score": 1.0,
+   "pass": true
+  }
+ ]
+}

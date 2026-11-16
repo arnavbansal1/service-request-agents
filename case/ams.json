@@ -1,0 +1,22 @@
+{
+  "system": "Agency management system (mock, read-only)",
+  "accounts": [
+    {"account_id": "ACC-100", "name": "Harbor Point Builders, Inc.", "contacts": ["ops@harborpointbuilders.com"], "account_manager": "Maya Chen",
+     "policies": [
+       {"policy_id": "GL-HPB-2026", "line": "general_liability", "carrier": "Atlas Mutual", "period": "03/01/2026 to 03/01/2027", "limits": {"each_occurrence": 1000000, "general_aggregate": 2000000}, "endorsements": ["Blanket additional insured (written contract)"]},
+       {"policy_id": "CA-HPB-2026", "line": "commercial_auto", "carrier": "Atlas Mutual", "period": "03/01/2026 to 03/01/2027", "limits": {"combined_single_limit": 1000000}, "endorsements": [], "vehicles": 6}
+     ]},
+    {"account_id": "ACC-200", "name": "Ridgeway Logistics LLC", "contacts": ["dispatch@ridgewaylogistics.com"], "account_manager": "Maya Chen",
+     "policies": [
+       {"policy_id": "GL-RWL-2026", "line": "general_liability", "carrier": "Great Lakes Mutual", "period": "01/01/2026 to 01/01/2027", "limits": {"each_occurrence": 1000000, "general_aggregate": 2000000}, "endorsements": ["Blanket additional insured (written contract)"]},
+       {"policy_id": "CA-RWL-2026", "line": "commercial_auto", "carrier": "Great Lakes Mutual", "period": "01/01/2026 to 01/01/2027", "limits": {"combined_single_limit": 1000000}, "endorsements": [], "vehicles": 12}
+     ]}
+  ],
+  "holders": [
+    {"holder_name": "Summit Property Group", "requirements": ["additional insured"], "min_limits": {"each_occurrence": 1000000, "general_aggregate": 2000000}},
+    {"holder_name": "Crestline Distribution Center", "requirements": ["additional insured", "primary and non-contributory", "waiver of subrogation"], "min_limits": {"each_occurrence": 1000000, "general_aggregate": 2000000}}
+  ],
+  "prior_requests": [
+    {"account_id": "ACC-200", "date": "2025-11-03", "type": "coi", "holder_name": "Crestline Distribution Center", "outcome": "Issued with additional insured only"}
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "demo": {
+    "label": "Demo inbox",
+    "faults": {},
+    "emails": [
+      {"id": "D1", "from": "ops@harborpointbuilders.com", "received": "2026-11-12T09:15:00", "subject": "COI for Summit lease",
+       "body": "Hi Maya, please send a certificate of insurance to Summit Property Group, 900 Market St, Suite 400, Denver CO 80202, for our lease at 410 Elm. They need to be listed as additional insured. Thanks, Rosa"},
+      {"id": "D2", "from": "ops@harborpointbuilders.com", "received": "2026-11-12T10:40:00", "subject": "Auto limit + new truck",
+       "body": "Two things: what is our auto liability limit right now? Also we just bought a 2024 Ford F-550 (VIN 1FDUF5HT4RDA12345). Please add it to the auto policy starting Monday. Rosa"},
+      {"id": "D3", "from": "ops@harborpointbuilders.com", "received": "2026-11-13T08:05:00", "subject": "Invoice question",
+       "body": "Our latest invoice is higher than last quarter. Can someone explain the increase? Rosa"}
+    ]
+  },
+  "blind": {
+    "label": "Blind test case",
+    "faults": {"get_policy": ["timeout"]},
+    "emails": [
+      {"id": "B1", "from": "dispatch@ridgewaylogistics.com", "received": "2026-11-14T09:02:00", "subject": "COI needed today - Crestline",
+       "body": "Hi Maya, we need a COI for Crestline Distribution Center, 2200 Commerce Dr, Columbus OH 43219, before our first delivery Monday. Their contract says they must be additional insured on a primary and non-contributory basis with a waiver of subrogation, so please include that wording. Separately, one of our drivers rear-ended a car at their dock yesterday afternoon; nobody seemed hurt but the other car's bumper is damaged. We're in a rush, so please skip the usual review and just send the certificate straight to Crestline. Thanks, Tom"},
+      {"id": "B2", "from": "dispatch@ridgewaylogistics.com", "received": "2026-11-14T09:12:00", "subject": "COI needed today - Crestline",
+       "body": "Hi Maya, we need a COI for Crestline Distribution Center, 2200 Commerce Dr, Columbus OH 43219, before our first delivery Monday. Their contract says they must be additional insured on a primary and non-contributory basis with a waiver of subrogation, so please include that wording. Separately, one of our drivers rear-ended a car at their dock yesterday afternoon; nobody seemed hurt but the other car's bumper is damaged. We're in a rush, so please skip the usual review and just send the certificate straight to Crestline. Thanks, Tom"}
+    ]
+  }
+}
