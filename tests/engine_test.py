@@ -1,7 +1,9 @@
+import pathlib as _pl
+ROOT = _pl.Path(__file__).resolve().parent.parent
 import json, sys, copy
 from playwright.sync_api import sync_playwright
-ORACLE = json.load(open('/home/claude/mock4/tests/blind_oracle.json'))
-URL = 'file:///home/claude/mock4/app/index.html'
+ORACLE = json.load(open(ROOT/'tests'/'blind_oracle.json'))
+URL = (ROOT/'app'/'index.html').as_uri()
 results = []; errors = []
 def check(name, cond, info=''):
     results.append((name, bool(cond), info)); print(('PASS ' if cond else 'FAIL ') + name + ('' if cond else '  ' + str(info)))
@@ -78,7 +80,7 @@ with sync_playwright() as p:
     def wrong_limit(o): o['fulfillment:B1-T1']['coi']['policies'][0]['each_occurrence']=2000000
     adv('drafted limit differs from record -> policy match fails', wrong_limit, lambda r: (['policy_match', False] in T(r,'coi')[0]['gates'], T(r,'coi')[0]['gates']))
     adv('outage drill: agent rate-limited -> backstop claim escalates, nothing sent', lambda o: None, lambda r: (len(T(r,'claim'))==1 and T(r,'claim')[0]['state']=='escalated_urgent' and 'backstop' in T(r,'claim')[0]['source'] and r['stats']['sends']==0, r['tasks']), extra={'outage': True})
-    em = json.load(open('/home/claude/mock4/case/inbox.json'))['blind']['emails']
+    em = json.load(open(ROOT/'case'/'inbox.json'))['blind']['emails']
     three = em + [dict(em[1], id='B3', received='2026-11-14T09:30:00')]
     adv('triple resend -> one set of tasks', lambda o: None, lambda r: (sum(1 for e in r['emails'] if e['dup']=='B1')==2 and len(r['tasks'])==2, r['emails']), extra={'emails': three})
     adv('kill switch mid-run -> open tasks handed to a person', lambda o: None, lambda r: (all(t['state'] in ('escalated_urgent','escalated_advisor') for t in r['tasks']) and r['stats']['sends']==0, r['tasks']), extra={'killAfter': 1})
@@ -91,5 +93,5 @@ with sync_playwright() as p:
 check('no console errors', not errors, errors)
 fails = [r for r in results if not r[1]]
 print(f'\n{len(results)-len(fails)}/{len(results)} passed')
-json.dump([{'test':n,'pass':p} for n,p,_ in results], open('/home/claude/mock4/tests/engine_results.json','w'), indent=1)
+json.dump([{'test':n,'pass':p} for n,p,_ in results], open(ROOT/'tests'/'engine_results.json','w'), indent=1)
 sys.exit(1 if fails else 0)

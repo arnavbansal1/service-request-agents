@@ -1,3 +1,6 @@
+import pathlib as _pl
+HERE = _pl.Path(__file__).resolve().parent
+ROOT = HERE.parent
 """Spec-driven build: requirements.md, design.md, tasks.md + in-app traceability (requirement -> tests -> result)."""
 import json, pathlib
 from html import escape as e
@@ -29,7 +32,7 @@ STORIES = [
 ]
 def results():
     r={}
-    for f in ['/home/claude/mock4/tests/engine_results.json','/home/claude/mock4/tests/ui_results.json']:
+    for f in [ROOT/'tests'/'engine_results.json',ROOT/'tests'/'ui_results.json']:
         p=pathlib.Path(f)
         if p.exists(): r.update({x['test']:x['pass'] for x in json.loads(p.read_text())})
     return r
@@ -43,7 +46,7 @@ def spec_html():
             rows+=f'<tr><td style="padding-left:18px"><b>{rid}</b></td><td>{e(txt)}</td><td>{len(ms)} test(s)</td><td class="{"pass" if ok else "fail"}">{"Pass" if ok else ("No test" if not ms else "FAIL")}</td></tr>'
     return f'<table class="sc"><tr><th>ID</th><th>User story → acceptance criteria (EARS style)</th><th>Proved by</th><th>Offline result</th></tr>{rows}</table><p class="note">Results from the offline engine and UI suites at build time. Full spec: requirements.md, design.md, tasks.md.</p>'
 def write_md():
-    d=pathlib.Path('/home/claude/mock4/spec'); d.mkdir(exist_ok=True); res=results()
+    d=(ROOT/'spec'); d.mkdir(exist_ok=True); res=results()
     req="# Requirements · Service Request Agents (Mock 4)\n\nUser: agency service team. Problem: mixed client emails (certificates, claims, questions, changes) take manual reading, lookups and drafting; mistakes are E&O (errors and omissions) risk.\n\n"
     R={r[0]:r for r in REQS}
     for sid,who,want,why,rids in STORIES:

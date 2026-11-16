@@ -1,0 +1,50 @@
+<section id="architecture" data-transition="fade">
+<p class="kicker">Architecture · multi-agent, code-enforced</p>
+<h2>Four bounded agents in a code-controlled workflow</h2>
+<svg class="arch" viewBox="0 0 1664 710" aria-label="Email or portal requests enter a code orchestrator. Intake, context, fulfillment and independent quality-check agents run in order; the context agent reads a read-only system of record. Deterministic safety gates sit before human approval and sending. A possible claim escalates immediately from intake; gate failures escalate to an advisor or carrier.">
+<defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M1 1L9 5L1 9z" fill="#7A7870"/></marker></defs>
+<rect x="24" y="0" width="300" height="90" rx="14" fill="#FFFFFF" stroke="#B4B2A9" stroke-width="2"/>
+<text x="174" y="54" text-anchor="middle" font-family="Inter, sans-serif" font-size="32" font-weight="600" fill="#2C2C2A">Email or portal</text>
+<rect x="460" y="0" width="420" height="90" rx="14" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="2"/>
+<text x="670" y="38" text-anchor="middle" font-family="Inter, sans-serif" font-size="32" font-weight="600" fill="#2C2C2A">System of record</text>
+<text x="670" y="72" text-anchor="middle" font-family="Inter, sans-serif" font-size="28" fill="#5F5E5A">Account, policy · read-only</text>
+<rect x="4" y="130" width="1656" height="420" rx="24" fill="none" stroke="#B4B2A9" stroke-width="2" stroke-dasharray="10 8"/>
+<line x1="174" y1="90" x2="174" y2="166" stroke="#7A7870" stroke-width="3" marker-end="url(#ah)"/>
+<line x1="627" y1="90" x2="627" y2="166" stroke="#7A7870" stroke-width="3" marker-end="url(#ah)"/>
+<rect x="24" y="170" width="370" height="120" rx="14" fill="#EEEDFE" stroke="#534AB7" stroke-width="2"/>
+<text x="209" y="222" text-anchor="middle" font-family="Inter, sans-serif" font-size="34" font-weight="600" fill="#3C3489">Orchestrator agent</text>
+<text x="209" y="260" text-anchor="middle" font-family="Inter, sans-serif" font-size="28" fill="#534AB7">Splits, types, plans routes</text>
+<rect x="442" y="170" width="370" height="120" rx="14" fill="#EEEDFE" stroke="#534AB7" stroke-width="2"/>
+<text x="627" y="222" text-anchor="middle" font-family="Inter, sans-serif" font-size="34" font-weight="600" fill="#3C3489">Context agent</text>
+<text x="627" y="260" text-anchor="middle" font-family="Inter, sans-serif" font-size="28" fill="#534AB7">Chooses cited lookups</text>
+<rect x="860" y="170" width="370" height="120" rx="14" fill="#EEEDFE" stroke="#534AB7" stroke-width="2"/>
+<text x="1045" y="222" text-anchor="middle" font-family="Inter, sans-serif" font-size="34" font-weight="600" fill="#3C3489">Fulfillment agent</text>
+<text x="1045" y="260" text-anchor="middle" font-family="Inter, sans-serif" font-size="28" fill="#534AB7">Drafts the next step</text>
+<rect x="1278" y="170" width="370" height="120" rx="14" fill="#EEEDFE" stroke="#534AB7" stroke-width="2"/>
+<text x="1463" y="222" text-anchor="middle" font-family="Inter, sans-serif" font-size="34" font-weight="600" fill="#3C3489">LLM judge agent</text>
+<text x="1463" y="260" text-anchor="middle" font-family="Inter, sans-serif" font-size="28" fill="#534AB7">Re-fetches, verifies</text>
+<line x1="394" y1="230" x2="438" y2="230" stroke="#7A7870" stroke-width="3" marker-end="url(#ah)"/>
+<line x1="812" y1="230" x2="856" y2="230" stroke="#7A7870" stroke-width="3" marker-end="url(#ah)"/>
+<line x1="1230" y1="230" x2="1274" y2="230" stroke="#7A7870" stroke-width="3" marker-end="url(#ah)"/>
+<rect x="860" y="360" width="788" height="120" rx="14" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="2"/>
+<text x="1254" y="412" text-anchor="middle" font-family="Inter, sans-serif" font-size="34" font-weight="600" fill="#2C2C2A">Deterministic safety gates</text>
+<text x="1254" y="450" text-anchor="middle" font-family="Inter, sans-serif" font-size="28" fill="#5F5E5A">Policy mismatch · wording · evidence</text>
+<rect x="442" y="360" width="370" height="120" rx="14" fill="#E1F5EE" stroke="#0F6E56" stroke-width="2"/>
+<text x="627" y="412" text-anchor="middle" font-family="Inter, sans-serif" font-size="34" font-weight="600" fill="#085041">Person approves</text>
+<text x="627" y="450" text-anchor="middle" font-family="Inter, sans-serif" font-size="28" fill="#0F6E56">Every external send</text>
+<rect x="24" y="360" width="370" height="120" rx="14" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="2"/>
+<text x="209" y="412" text-anchor="middle" font-family="Inter, sans-serif" font-size="34" font-weight="600" fill="#2C2C2A">Send, update</text>
+<text x="209" y="450" text-anchor="middle" font-family="Inter, sans-serif" font-size="28" fill="#5F5E5A">Once only, logged</text>
+<line x1="1463" y1="290" x2="1463" y2="356" stroke="#7A7870" stroke-width="3" marker-end="url(#ah)"/>
+<line x1="860" y1="420" x2="816" y2="420" stroke="#7A7870" stroke-width="3" marker-end="url(#ah)"/>
+<line x1="442" y1="420" x2="398" y2="420" stroke="#7A7870" stroke-width="3" marker-end="url(#ah)"/>
+<text x="40" y="526" font-family="Inter, sans-serif" font-size="28" fill="#5F5E5A">Workflow engine (code): checks the plan · state · permissions · retries · dedupe · audit · kill switch</text>
+<rect x="860" y="590" width="788" height="110" rx="14" fill="#E1F5EE" stroke="#0F6E56" stroke-width="2"/>
+<text x="1254" y="638" text-anchor="middle" font-family="Inter, sans-serif" font-size="34" font-weight="600" fill="#085041">Escalate to advisor or carrier</text>
+<text x="1254" y="676" text-anchor="middle" font-family="Inter, sans-serif" font-size="28" fill="#0F6E56">With the full trace</text>
+<line x1="1580" y1="480" x2="1580" y2="586" stroke="#7A7870" stroke-width="3" marker-end="url(#ah)"/>
+<path d="M24 250 L12 250 L12 645 L856 645" fill="none" stroke="#B4231A" stroke-width="3" marker-end="url(#ah)"/>
+<text x="40" y="625" font-family="Inter, sans-serif" font-size="28" fill="#B4231A">Possible claim: escalate at once, skipping the queue</text>
+</svg>
+<aside>Purple boxes are agents with bounded tools; gray is code, rules and data; green is a person. Two points to make: the LLM judge re-fetches its own evidence, so it can catch what the fulfillment agent left out; and agents never hold their own permissions. The orchestrator agent proposes the plan, but the workflow engine (code) decides which tools each agent may call and can override the plan, and nothing reaches a client without passing the gates and a person's approval.</aside>
+</section>

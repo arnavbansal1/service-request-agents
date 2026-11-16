@@ -68,6 +68,22 @@
   "pass": true
  },
  {
+  "test": "frontend view hides the trace",
+  "pass": true
+ },
+ {
+  "test": "backend view hides the advisor console",
+  "pass": true
+ },
+ {
+  "test": "eval shows expected vs actual",
+  "pass": true
+ },
+ {
+  "test": "ground truth box lists frozen outcome and records",
+  "pass": true
+ },
+ {
   "test": "blind walkthrough runs 7 steps and closes",
   "pass": true
  },

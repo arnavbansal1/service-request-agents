@@ -1,3 +1,6 @@
+import pathlib as _pl
+HERE = _pl.Path(__file__).resolve().parent
+ROOT = HERE.parent
 # Services + tech stack architecture (hardcoded colors so it renders in app, slides and PDF)
 from html import escape as e
 STY = {"ext":("#FFFFFF","#8A887F","#2C2C2A"),"code":("#F1EFE8","#5F5E5A","#2C2C2A"),"agent":("#EEEDFE","#534AB7","#26215C"),
@@ -63,4 +66,4 @@ def table():
     r = "".join(f"<tr><td><b>{e(a)}</b></td><td>{e(b)}</td><td>{e(c)}</td></tr>" for a,b,c in PROTO_ROWS)
     return f'<table class="sc" style="margin-top:8px"><tr><th>Layer</th><th>In this prototype</th><th>In production</th></tr>{r}</table>'
 if __name__ == "__main__":
-    import pathlib; pathlib.Path('/home/claude/mock4/app/techstack.svg').write_text(svg()); print(len(svg()))
+    import pathlib; (HERE/'techstack.svg').write_text(svg()); print(len(svg()))

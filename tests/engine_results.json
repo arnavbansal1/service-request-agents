@@ -152,6 +152,10 @@
   "pass": true
  },
  {
+  "test": "adversarial: outage drill: agent rate-limited -> backstop claim escalates, nothing sent",
+  "pass": true
+ },
+ {
   "test": "adversarial: triple resend -> one set of tasks",
   "pass": true
  },

@@ -1,8 +1,11 @@
+import pathlib as _pl
+HERE = _pl.Path(__file__).resolve().parent
+ROOT = HERE.parent
 import re, pathlib, sys
-sys.path.insert(0,'/home/claude/mock4/app')
+sys.path.insert(0,str(HERE))
 from techstack import svg as ts_svg, table as ts_table
 from bizarch import svg as biz_svg
-src = pathlib.Path('/home/claude/deck5/project/slides/architecture.html').read_text()
+src = (HERE/'architecture_slide.html').read_text()
 ARCH_SVG = '<p style="margin:0 0 10px"><b>Frontend</b> = the advisor console (inbox, task cards, approve). <b>Backend</b> = agents, workflow engine, safety gates, tools and records. In this prototype both run inside one page; in production the backend runs as the services in diagram 3.</p><h4 style="margin:4px 0">1 · Business architecture: stakeholders, value stream, who owns what</h4>' + biz_svg() + '<h4 style="margin:18px 0 4px">2 · Process flow: agents, code and people</h4>' + re.search(r'<svg class="arch".*?</svg>', src, re.S).group(0)
 ARCH_SVG += '<h4 style="margin:18px 0 4px">3 · Technical architecture: services and tech stack</h4>' + ts_svg() + ts_table() + '''<h4 style="margin:18px 0 4px">4 · Layer ownership</h4><table class="sc" style="margin-top:8px"><tr><th>Layer</th><th>Owns</th><th>Production equivalent</th></tr>
 <tr><td><b>Orchestrator agent</b></td><td>Splits the email, types tasks, proposes a route per task</td><td>Claude, versioned prompt</td></tr>

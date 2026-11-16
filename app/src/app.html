@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Service Request Agents</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/*__STYLES__*/
+</style>
+</head>
+<body>
+<header>
+  <div class="brand"><div class="logo">SR</div><div><h1>Service Request Agents</h1><div class="sub">Agents draft · code decides · a person approves</div></div></div>
+  <div class="controls">
+    <button id="demoBtn" class="btn primary big">▶ Start demo</button>
+    <div class="seg"><button id="dsDemo" class="on">Demo inbox</button><button id="dsBlind">Blind test case</button></div>
+    <div class="seg" title="Show the advisor-facing frontend, the backend, or both"><button id="layBoth" class="on">Both</button><button id="layFe">Frontend</button><button id="layBe">Backend</button></div>
+    <button id="runBtn" class="btn">Run inbox</button>
+    <button id="drillBtn" class="btn" title="Simulate the orchestrator agent being rate-limited on the blind email">Outage drill</button>
+    <details class="adv"><summary class="btn">Advanced ▾</summary><div class="advp">
+      <div class="seg"><button id="mSaved" class="on">Recorded / saved run</button><button id="mLive">Live Claude</button></div>
+      <button id="run3Btn" class="btn">Run 3× live</button>
+      <button id="faultBtn" class="btn" title="Blind variant: every policy lookup times out">Fault: persistent timeout · off</button>
+      <button id="tourBtn" class="btn">Detailed walkthrough</button>
+      <button id="killBtn" class="btn" title="Kill switch: stop all agent steps; open tasks go to a person">Kill switch</button>
+    </div></details>
+  </div>
+</header>
+<div class="oneliner">Agents do the reading and drafting. Code controls every risky step. A person approves what goes out.</div>
+<div class="legend"><span><span class="lay fe">Frontend</span> what the risk advisor sees and approves</span><span><span class="lay be">Backend</span> agents, workflow engine, safety gates, records</span><span><span class="lay gt">Ground truth</span> frozen expected outcome + system of record</span></div>
+<div class="status" id="status">Loading…</div>
+<div class="banner" id="killBanner" hidden>Kill switch on: no agent step runs. Open tasks are handed to a person.</div>
+<div class="bar"><div class="chips" id="chips"></div><div class="cons" id="cons"></div></div>
+<main>
+  <section class="panel"><h2><span>Inbox</span><span class="lay fe">Frontend</span></h2><div class="scroll" id="inbox"></div></section>
+  <section class="panel"><h2><span>Advisor console · tasks <span id="tnote" style="text-transform:none;letter-spacing:0;font-weight:500"></span></span><span class="lay fe">Frontend</span></h2><div class="scroll" id="tasks"></div></section>
+  <section class="panel"><h2><span>Trace · what the system did <span class="lay be" style="margin-left:6px">Backend</span></span><span style="display:flex;gap:6px"><span class="seg"><button class="tlbtn on" id="vTree">Tree</button><button class="tlbtn" id="vTime">Timeline</button></span><button class="btn sm" id="exportBtn">Export JSON</button></span></h2><div class="scroll trace" id="trace"></div></section>
+</main>
+<details class="box" id="evalBox" open><summary>Eval · actual vs ground truth <span class="lay gt">Ground truth</span><span class="sm" id="evalSm"></span></summary><div class="pbody" id="evalBody"></div></details>
+<details class="box" id="gtBox"><summary>Ground truth data <span class="lay gt">Ground truth</span><span class="sm">what the system is scored against, and what it must match</span></summary><div class="pbody" id="gtBody"></div></details>
+<details class="box" id="archBox"><summary>Architecture <span class="lay be">Backend</span><span class="sm">process flow · services and tech stack · prototype vs production</span></summary><div class="pbody" id="archBody"></div></details>
+<details class="box" id="polBox"><summary>Agents, permissions and prompts <span class="lay be">Backend</span><span class="sm">policy as code · versioned prompts</span></summary><div class="pbody" id="polBody"></div></details>
+<details class="box"><summary>Raw agent outputs <span class="lay be">Backend</span><span class="sm">exactly what each agent returned</span></summary><div class="pbody"><pre class="raw" id="raw">No run yet.</pre></div></details>
+<details class="box"><summary>How it works and path to production</summary><div class="pbody" id="howBody"></div></details>
+<div class="tour" id="tour" hidden></div>
+<footer>Prototype for discussion. Clients, policies and emails are fictional. Nothing is ever sent: "send" records an action in the trace. Agents propose; the workflow engine (code) owns state, permissions and gates; a person approves every external action.</footer>
+<script>
+"use strict";
+/*__DATA__*/
+/*__SCRIPT__*/
+</script>
+</body>
+</html>
